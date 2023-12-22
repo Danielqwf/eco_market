@@ -18,6 +18,18 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = ("image", "name", "price", "description", "category")
 
+    def get_product_name(self, name):
+        try:
+            product = Product.objects.get(name=name)
+            return product
+        except Product.DoesNotExist:
+            return None
+
+    def search_product_by_name(self, name):
+        product = Product.objects.filter(name__icontains=name)
+        return product
+
+
 
 class CartSerializer(serializers.ModelSerializer):
     product = ProductSerializer()
