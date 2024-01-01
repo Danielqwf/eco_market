@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Category, Product, Cart, CartItem
+from .models import Category, Product, Cart, CartItem, Info
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -44,7 +44,7 @@ class CartItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CartItem
-        fields = ('product', 'quantity', 'total_price')
+        fields = ("product", "quantity", "total_price")
 
     def get_total_price(self, obj):
         total_price = 0
@@ -53,3 +53,8 @@ class CartItemSerializer(serializers.ModelSerializer):
             total_price += obj.product.price * obj.quantity
         return total_price
 
+
+class InfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Info
+        fields = ("image", "text", "whatsapp_contact", "inst_contact")

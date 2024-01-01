@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Product, Cart, CartItem
+from .models import Category, Product, Cart, CartItem, Info
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -21,3 +21,7 @@ class CartAdmin(admin.ModelAdmin):
 class CartItemAdmin(admin.ModelAdmin):
     fields = ("product", "quantity")
 
+
+@admin.register(Info)
+class InfoAdmin(admin.ModelAdmin):
+    fields = ("image", "text", "whatsapp_contact", "inst_contact")
